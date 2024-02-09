@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class BusinessExceptionUtil {
+public final class BusinessExceptionUtils {
 
 	public static void throwsIf(boolean condition, @NonNull MessageException... message) throws BusinessException {
 
