@@ -1,0 +1,25 @@
+package com.devtonin.palmeirasapi.domain.model;
+
+public enum PositionEnum {
+	CENTRO_AVANTE,
+
+	PONTA_ESQUERDA,
+
+	PONTA_DIRETA,
+
+	MEIA_ATACANTE,
+
+	LATERAL_ESQUERDA,
+
+	LATERAL_DIREITA,
+
+	PRIMEIRO_VOLANTE,
+
+	SEGUNDO_VOLANTE,
+
+	ZAGUEIRO_DIREITO,
+
+	ZAGUEIRO_ESQUERDO,
+
+	GOLEIRO
+}
