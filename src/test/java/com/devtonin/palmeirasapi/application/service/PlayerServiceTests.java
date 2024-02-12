@@ -1,15 +1,17 @@
 package com.devtonin.palmeirasapi.application.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import com.devtonin.palmeirasapi.domain.exception.BusinessException;
 import com.devtonin.palmeirasapi.domain.model.Player;
-import com.devtonin.palmeirasapi.domain.model.PositionEnum;
 import com.devtonin.palmeirasapi.infra.repository.PlayerRepository;
 
 @SpringBootTest
@@ -22,29 +24,26 @@ public class PlayerServiceTests {
     @Mock
     private PlayerRepository playerRepository;
 
-
     @Test
-    void shouldCreatePlayerWithValidDataSuccessfully () {
-        Player player = createValidPlayer();
+    void shouldCreateNewPlayerWithValidDataSuccessfully () {
+        Player player = PlayerConstants.createValidPlayer();
         
         when(playerRepository.save(player)).thenReturn(player);
         Player createdPlayer = playerService.createPlayer(player);
 
-        Assertions.assertEquals(player, createdPlayer);
-        Assertions.assertNotNull(createdPlayer);
+        assertEquals(player, createdPlayer);
+        assertNotNull(createdPlayer);
     }
-    
 
-    public static Player createValidPlayer () {
-        return Player.builder()
-            .name("Aníbal Moreno")
-            .playerId(53413124L)
-            .shirtNumber(5)
-            .position(PositionEnum.PRIMEIRO_VOLANTE)
-            .age(25)
-            .height("1.74")
-            .weight("75kg")
-            .isBagre(false)
-        .build();    
+    @Test
+    void shouldNotCreateNewPlayerWithInvalidData() {
+        Player player = PlayerConstants.createInvalidPlayer();
+
+        when(playerRepository.save(player))
+            .thenThrow(BusinessException.class);
+
+        Assertions.assertThatThrownBy(() -> playerService.createPlayer(player))
+            .isInstanceOf(BusinessException.class);
     }
+
 }
