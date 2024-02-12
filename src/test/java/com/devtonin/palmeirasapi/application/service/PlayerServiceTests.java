@@ -26,23 +26,23 @@ public class PlayerServiceTests {
 
     @Test
     void shouldCreateNewPlayerWithValidDataSuccessfully () {
-        Player player = PlayerConstants.createValidPlayer();
+        Player validPlayer = PlayerConstants.createValidPlayer();
         
-        when(playerRepository.save(player)).thenReturn(player);
-        Player createdPlayer = playerService.createPlayer(player);
+        when(playerRepository.save(validPlayer)).thenReturn(validPlayer);
+        Player createdPlayer = playerService.createPlayer(validPlayer);
 
-        assertEquals(player, createdPlayer);
+        assertEquals(validPlayer, createdPlayer);
         assertNotNull(createdPlayer);
     }
 
     @Test
     void shouldNotCreateNewPlayerWithInvalidData() {
-        Player player = PlayerConstants.createInvalidPlayer();
+        Player invalidPlayer = PlayerConstants.createInvalidPlayer();
 
-        when(playerRepository.save(player))
+        when(playerRepository.save(invalidPlayer))
             .thenThrow(BusinessException.class);
 
-        Assertions.assertThatThrownBy(() -> playerService.createPlayer(player))
+        Assertions.assertThatThrownBy(() -> playerService.createPlayer(invalidPlayer))
             .isInstanceOf(BusinessException.class);
     }
 
