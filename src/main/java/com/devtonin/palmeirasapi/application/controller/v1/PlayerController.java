@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("/palmeiras-api/v1/players")
 @RequiredArgsConstructor
 public class PlayerController {
-	//TODO: criar interfaces e renomear esses pra impl -> service, controller e repository (Inversão de dependência)
 
 	@NonNull
 	private PlayerMapper mapper;

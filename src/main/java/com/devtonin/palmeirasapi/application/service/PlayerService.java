@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PlayerService {
-	//TODO: criar interfaces e renomear esses pra impl -> service, controller e repository (Inversão de dependência)
 	
 	private PlayerRepository playerRepository;
 
