@@ -1,5 +1,7 @@
 package com.devtonin.palmeirasapi.domain.model;
 
+import java.util.Optional;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,10 +20,10 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "PLAYERS")
+@Builder
 public class Player {
 
 	@Id
