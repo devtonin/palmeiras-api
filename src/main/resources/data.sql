@@ -1,1 +1,0 @@
-INSERT INTO PLAYERS (playerId, name, shirtNumber, age, height, weight, position, isBagre) values (1L, 'Aníbal Moreno', 5, 25, '1.74m', '72kg', 'PRIMEIRO_VOLANTE', false);

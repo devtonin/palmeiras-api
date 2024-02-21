@@ -19,10 +19,10 @@ import com.devtonin.palmeirasapi.infra.repository.PlayerRepository;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class PlayerServiceTests {
+public class PlayerServiceImplTests {
 
     @InjectMocks
-    private PlayerService playerService;
+    private PlayerServiceImpl playerServiceImpl;
 
     @Mock
     private PlayerRepository playerRepository;
@@ -32,7 +32,7 @@ public class PlayerServiceTests {
         Player validPlayer = PlayerConstants.createValidPlayer();
         
         when(playerRepository.save(validPlayer)).thenReturn(validPlayer);
-        Player createdPlayer = playerService.createPlayer(validPlayer);
+        Player createdPlayer = playerServiceImpl.createPlayer(validPlayer);
 
         assertEquals(validPlayer, createdPlayer);
         assertNotNull(createdPlayer);
@@ -45,7 +45,7 @@ public class PlayerServiceTests {
         when(playerRepository.save(invalidPlayer))
             .thenThrow(BusinessException.class);
 
-        Assertions.assertThatThrownBy(() -> playerService.createPlayer(invalidPlayer))
+        Assertions.assertThatThrownBy(() -> playerServiceImpl.createPlayer(invalidPlayer))
             .isInstanceOf(BusinessException.class);
     }
 
@@ -57,7 +57,7 @@ public class PlayerServiceTests {
 
         when(playerRepository.findAll()).thenReturn(players);
 
-        List<Player> playersFound = playerService.getAllPlayers();
+        List<Player> playersFound = playerServiceImpl.getAllPlayers();
 
         
         Assertions.assertThatNoException();
@@ -72,7 +72,7 @@ public class PlayerServiceTests {
 
         when(playerRepository.findAll()).thenReturn(new ArrayList<Player>());
 
-        Assertions.assertThatThrownBy(() -> playerService.getAllPlayers())
+        Assertions.assertThatThrownBy(() -> playerServiceImpl.getAllPlayers())
             .isInstanceOf(BusinessException.class);
     }
 
@@ -82,7 +82,7 @@ public class PlayerServiceTests {
     
         when(playerRepository.findById(validPlayer.getPlayerId())).thenReturn(Optional.ofNullable((Player) validPlayer));
 
-        Player playerFound = playerService.getPlayerById(validPlayer.getPlayerId());
+        Player playerFound = playerServiceImpl.getPlayerById(validPlayer.getPlayerId());
 
         Assertions.assertThatNoException();
         assertNotNull(playerFound);
@@ -95,7 +95,7 @@ public class PlayerServiceTests {
     
         when(playerRepository.findById(validPlayer.getPlayerId())).thenReturn(null);
 
-        Assertions.assertThatThrownBy(() -> playerService.getPlayerById(validPlayer.getPlayerId()))
+        Assertions.assertThatThrownBy(() -> playerServiceImpl.getPlayerById(validPlayer.getPlayerId()))
         .isInstanceOf(BusinessException.class);
     }
 
