@@ -1,4 +1,4 @@
-package com.devtonin.palmeirasapi.application.service;
+package com.devtonin.palmeirasapi.utils;
 
 import com.devtonin.palmeirasapi.domain.model.Player;
 import com.devtonin.palmeirasapi.domain.model.PositionEnum;
