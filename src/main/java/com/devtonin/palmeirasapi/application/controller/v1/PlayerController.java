@@ -4,7 +4,7 @@ import com.devtonin.palmeirasapi.application.service.PlayerService;
 import com.devtonin.palmeirasapi.domain.dto.PlayerDto;
 import com.devtonin.palmeirasapi.domain.mapper.PlayerMapper;
 import com.devtonin.palmeirasapi.domain.model.Player;
-import io.micrometer.common.lang.NonNull;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -21,21 +21,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PlayerController {
 
 	@NonNull
-	private PlayerMapper mapper;
+	private PlayerMapper playerMapper;
 	
 	private PlayerService playerService;
 
 	@PostMapping
 	public ResponseEntity<PlayerDto> createPlayer(@RequestBody PlayerDto playerDto) {
-		Player player = mapper.destinationToSource(playerDto);
+		Player player = playerMapper.destinationToSource(playerDto);
 		Player createdPlayer = playerService.createPlayer(player);
-		return ResponseEntity.status(HttpStatus.CREATED).body(mapper.sourceToDestination(createdPlayer));
+		return ResponseEntity.status(HttpStatus.CREATED).body(playerMapper.sourceToDestination(createdPlayer));
 	}
 
 	@GetMapping
 	public ResponseEntity<List<PlayerDto>> getAllPlayers() {
 		List<Player> playersFound = playerService.getAllPlayers();
-		return ResponseEntity.status(HttpStatus.OK).body(mapper.sourceToDestination(playersFound));
+		return ResponseEntity.status(HttpStatus.OK).body(playerMapper.sourceToDestination(playersFound));
 	}
 	
 }
