@@ -14,7 +14,7 @@ public class PlayerRepositoryTest {
     @Autowired
     private PlayerRepository playerRepository;
 
-    @Autowired
+    @Autowired  
     private TestEntityManager testEntityManager;
  
     
