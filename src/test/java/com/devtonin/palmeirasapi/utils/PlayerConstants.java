@@ -20,14 +20,14 @@ public class PlayerConstants {
 
     public static Player createInvalidPlayer() {
         return Player.builder()
-                .name(" ")
-                .playerId(53413124L)
+                .name("")
+                .playerId(null)
                 .shirtNumber(null)
-                .position(PositionEnum.PRIMEIRO_VOLANTE)
-                .age(25)
+                .position(null)
+                .age(null)
                 .height("")
-                .weight(" ")
-                .isBagre(false)
+                .weight("")
+                .isBagre(null)
                 .build();
     }
 

@@ -24,7 +24,6 @@ public class PlayerDto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
 	private Long playerId;
 
 	@NotNull
@@ -35,10 +34,15 @@ public class PlayerDto {
 	@NotNull
 	private Integer shirtNumber;
 
+	@NotNull
 	private Integer age;
 
+	@NotEmpty
+	@NotBlank
 	private String height;
 
+	@NotEmpty
+	@NotBlank
 	private String weight;
 
 	@NotNull

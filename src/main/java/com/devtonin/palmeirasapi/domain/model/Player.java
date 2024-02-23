@@ -1,7 +1,5 @@
 package com.devtonin.palmeirasapi.domain.model;
 
-import java.util.Optional;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,30 +27,34 @@ public class Player {
 	@Id
 	@Column(name="PLAYER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
 	private Long playerId;
 
 	@NotNull
 	@NotEmpty
 	@NotBlank
-	@Column(name="NAME")
+	@Column(name="NAME", nullable = false)
 	private String name;
 
 	@NotNull
-	@Column(name="SHIRTNUMBER")
+	@Column(name="SHIRTNUMBER", nullable = false)
 	private Integer shirtNumber;
 
+	@NotNull
 	@Column(name="AGE")
 	private Integer age;
 
+	@NotEmpty
+	@NotBlank
 	@Column(name="HEIGHT")
 	private String height;
 
+	@NotEmpty
+	@NotBlank
 	@Column(name="WEIGHT")
 	private String weight;
 
 	@NotNull
-	@Column(name="POSITION")
+	@Column(name="POSITION", nullable = false)
 	private PositionEnum position;
 
 	@Column(name="IS_BAGRE")

@@ -27,4 +27,9 @@ public class PlayerRepositoryTest {
         Assertions.assertThat(stub).isNotNull();
         Assertions.assertThat(stub.getName()).isEqualTo(player.getName());
     }
+
+    @Test
+    void shouldNotCreateNewPlayerAndThrowExceptionWhenInvalidData() {
+          Assertions.assertThatThrownBy( () -> playerRepository.save(null));
+    }
 }
