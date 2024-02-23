@@ -30,6 +30,9 @@ public class PlayerRepositoryTest {
 
     @Test
     void shouldNotCreateNewPlayerAndThrowExceptionWhenInvalidData() {
-          Assertions.assertThatThrownBy( () -> playerRepository.save(null));
+        Player emptyPlayer = new Player();
+
+        Assertions.assertThatThrownBy( () -> playerRepository.save(emptyPlayer));
+        Assertions.assertThatThrownBy( () -> playerRepository.save(PlayerConstants.createInvalidPlayer()));
     }
 }

@@ -11,7 +11,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotBlank;
 
@@ -29,18 +28,15 @@ public class Player {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long playerId;
 
-	@NotNull
 	@NotEmpty
 	@NotBlank
 	@Column(name="NAME", nullable = false)
 	private String name;
 
-	@NotNull
 	@Column(name="SHIRTNUMBER", nullable = false)
 	private Integer shirtNumber;
 
-	@NotNull
-	@Column(name="AGE")
+	@Column(name="AGE", nullable = false)
 	private Integer age;
 
 	@NotEmpty
@@ -53,7 +49,6 @@ public class Player {
 	@Column(name="WEIGHT")
 	private String weight;
 
-	@NotNull
 	@Column(name="POSITION", nullable = false)
 	private PositionEnum position;
 
