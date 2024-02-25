@@ -10,7 +10,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PlayerServiceImpl {
+public class PlayerServiceImpl implements PlayerService {
 	
 	private PlayerRepository playerRepository;
 
@@ -18,10 +18,12 @@ public class PlayerServiceImpl {
 		this.playerRepository = playerRepository;
 	}
 
+	@Override
 	public Player createPlayer(@NonNull Player player) {
 		return playerRepository.save(player);
     }
 
+	@Override
 	public List<Player> getAllPlayers () {
 		BusinessExceptionUtils.throwsIf(playerRepository.findAll().isEmpty(), 
 			MessageException.builder()
@@ -33,6 +35,7 @@ public class PlayerServiceImpl {
 		return playerRepository.findAll();
 	}
 
+	@Override
 	public Player getPlayerById(@NonNull Long playerId) {
 		BusinessExceptionUtils.throwsIf(playerRepository.findById(playerId) == null,
 			MessageException.builder()
