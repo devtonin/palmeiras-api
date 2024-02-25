@@ -32,8 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-
-.db
-.mv.db
-*.db
-*.mv.db
+data/
