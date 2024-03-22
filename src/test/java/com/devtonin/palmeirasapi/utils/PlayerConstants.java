@@ -18,6 +18,19 @@ public class PlayerConstants {
                 .build();
     }
 
+    public static Player createValidPlayer2 () {
+        return Player.builder()
+                .name("Zé Rafael")
+                .playerId(2L)
+                .shirtNumber(8)
+                .position(PositionEnum.SEGUNDO_VOLANTE)
+                .age(27)
+                .height("1.72")
+                .weight("73kg")
+                .isBagre(false)
+                .build();
+    }
+
     public static Player createInvalidPlayer() {
         return Player.builder()
                 .name("")

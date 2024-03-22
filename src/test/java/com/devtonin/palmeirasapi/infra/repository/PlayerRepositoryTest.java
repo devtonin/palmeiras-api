@@ -9,17 +9,16 @@ import com.devtonin.palmeirasapi.domain.model.Player;
 import com.devtonin.palmeirasapi.utils.PlayerConstants;
 
 @DataJpaTest
-public class PlayerRepositoryTest {
+class PlayerRepositoryTest {
 
     @Autowired
     private PlayerRepository playerRepository;
 
-    @Autowired  
+    @Autowired
     private TestEntityManager testEntityManager;
- 
-    
+
     @Test
-    void shouldCreateNewPlayerWithValidDataSuccessfully () {
+    void shouldCreateNewPlayerWithValidDataSuccessfully() {
         Player player = playerRepository.save(PlayerConstants.createValidPlayer());
 
         Player stub = testEntityManager.find(Player.class, player.getPlayerId());
@@ -32,7 +31,17 @@ public class PlayerRepositoryTest {
     void shouldNotCreateNewPlayerAndThrowExceptionWhenInvalidData() {
         Player emptyPlayer = new Player();
 
-        Assertions.assertThatThrownBy( () -> playerRepository.save(emptyPlayer));
-        Assertions.assertThatThrownBy( () -> playerRepository.save(PlayerConstants.createInvalidPlayer()));
+        Assertions.assertThatThrownBy(() -> playerRepository.save(emptyPlayer));
+        Assertions.assertThatThrownBy(() -> playerRepository.save(PlayerConstants.createInvalidPlayer()));
+    }
+
+    @Test
+    void shouldNotCreateNewPlayerWhenPlayerAlreadyExists() {
+        Player player = PlayerConstants.createValidPlayer();
+        testEntityManager.detach(player);
+        player.setPlayerId(null);
+
+        Assertions.assertThatThrownBy(() -> playerRepository.save(player))
+                .isInstanceOf(RuntimeException.class);
     }
 }

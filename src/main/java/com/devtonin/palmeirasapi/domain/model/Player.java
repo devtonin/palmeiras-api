@@ -30,7 +30,7 @@ public class Player {
 
 	@NotEmpty
 	@NotBlank
-	@Column(name="NAME", nullable = false)
+	@Column(name="NAME", nullable = false, unique = true)
 	private String name;
 
 	@Column(name="SHIRTNUMBER", nullable = false)
